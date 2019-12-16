@@ -1,0 +1,47 @@
+{# Create a fixed width retina image #}
+{% macro retinize(assetId, options={}) %}
+    {% import '_macros/_classAttr.twig' as m_classAttr %}
+
+    {# merge the options with the options parameter #}
+    {% set options = {
+        alt: '',
+        style: '',
+        class: [],
+        animation_name: '',
+        animation_time: '',
+    } | merge(options) %}
+
+    {% if options.is_tag %}
+      {{assetId}}
+    {% else %}
+      {# Get the asset meta data from WP #}
+      {% set assetArray       = function('wp_get_attachment_image_src', assetId, 'full') %}
+      {% set assetUrl         = assetArray[0] %}
+      {% set width            = ( assetArray[1] / 2 ) %}
+      {% set alt_text         = TimberImage(assetId).alt %}
+      {% set assetMetaData    = function('wp_get_attachment_metadata', assetId) %}
+      {% set assetNativeWidth = assetMetaData.width %}
+
+      <img
+        {% if ( '@2x' not in  assetUrl  ) %}
+            src="{{assetUrl}}"
+        {% elseif assetMetaData.sizes.large['mime-type'] == 'image/gif' %}
+          src="{{assetUrl}}"
+        {% else %}
+            src="{{assetUrl|resize(width)}}"
+        {% endif %}
+        {% if (width*2 == assetNativeWidth and width !=  0 and '@2x' in  assetUrl) %}
+            srcset="{{assetUrl}} 2x"
+        {% elseif (width*2 < assetNativeWidth) %}
+            srcset="{{assetUrl|resize(width*2)}} 2x"
+        {% endif %}
+        {{  alt_text ? 'alt="' ~ alt_text ~ '"' : 'alt="' ~  options.alt ~ '"'}}
+        {{  options.animation_name ? 'animation-name="' ~ options.animation_name ~ '"' : ''}}
+        {{  options.style ? 'style="' ~ options.style ~ '"' : ''}}
+        {{  options.animation_time ? 'animation-time="' ~ options.animation_time ~ '"' : ''}}
+        {{m_classAttr.classAttr(options.class)}}
+      />
+    {% endif %}
+
+
+{% endmacro %}

@@ -1,0 +1,20 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telephone=no, date=no, address=no">
+  <meta name="theme-color" content="#0BD8A2"/>
+  {% set is_front_page = function('is_front_page') %}
+  <title>{{function('bloginfo', 'name')}}{{ is_front_page ? '' : ' ' ~ function('wp_title') }}</title>
+  {% if not wpseo_metadesc %}
+  	<meta name="description" content="{{ site.description }}">
+  {% endif %}
+  {% set meta_description = current_search ? options.search_result_meta_description|replace({'%%keyword%%' : current_search}) : ( function('is_category', 'press') ? options.press_meta_description : ( function('is_category', 'blog') ? options.blog_meta_description : ( current_tag ? options.industry_meta_description|replace({ '%%keyword%%' : current_tag }) : ( function('is_post_type_archive', 'case_studies') ? options.our_work_meta_description : '' ) ) ) ) %}
+  {% if meta_description %}
+    <meta name="description" content="{{ meta_description }}">
+  {% endif %}
+  <link rel="author" href="{{ site.theme.link }}/humans.txt" />
+  <link rel="pingback" href="{{ site.pingback_url }}" />
+  <script>document.querySelector('html').classList.remove('no-js');</script>
+  {{function('wp_head')}}
+</head>

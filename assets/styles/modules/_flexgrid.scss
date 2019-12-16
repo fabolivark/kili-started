@@ -1,0 +1,21 @@
+//Extend Silent Classes
+.flexgrid {
+  @extend %flexgrid;
+}
+.flexgrid--full {
+  @extend %flexgrid--full;
+}
+.flexgrid__item {
+  @extend %flexgrid__item;
+}
+
+//Helpers
+.flexgrid--center {
+  @extend %flexgrid--center;
+}
+.medium--middle {
+  @extend %medium--middle;
+}
+
+
+//Columns

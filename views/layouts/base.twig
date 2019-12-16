@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes }}> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{ site.language_attributes }}> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{ site.language_attributes }}> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" {{ site.language_attributes }}> <!--<![endif]-->
+  {% include 'partials/head.twig' %}
+  <body class="{{body_class}}">
+    {% block header %}{{__('Sorry, no content yet', 'payix')}}{% endblock %}
+    <main class="content">
+      {% block content %}{{__('Sorry, no content yet', 'payix')}}{% endblock %}
+    </main>
+    {% include 'partials/footer.twig' %}
+  </body>
+</html>

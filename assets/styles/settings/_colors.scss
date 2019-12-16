@@ -1,0 +1,25 @@
+$gray-base:             #3E3C38 !default;
+$gray-darker:           lighten($gray-base, 13.5%) !default; // #595651
+$gray-dark:             lighten($gray-base, 20%)   !default; // #67635d
+$gray:                  lighten($gray-base, 33.5%) !default; // #827e76
+$gray-light:            lighten($gray-base, 46.7%) !default; // #9b9891
+$gray-lighter:          lighten($gray-base, 93.5%) !default; // #f2f2f1
+
+$brand-primary:         #9CD070 !default;
+$brand-success:         #C0FF89 !default;
+$brand-info:            #5796FF !default;
+$brand-warning:         #FFE46B !default;
+$brand-danger:          #EF7991 !default;
+$brand-ui:              #DFDFDF;
+$brand-default:         #AFAAA1;
+
+$white:                 #FFFFFF !default;
+
+
+$color-brand:           #9CD070;
+
+$body-bg:               white;
+$hr-border:             $gray-lighter;
+$link-color:            $brand-info;
+$link-hover-color:      darken($link-color, 15%);
+$color-text-body:       $gray-base;

@@ -1,0 +1,18 @@
+/* TEAM */
+	CEO:Jonathan Tarud
+	Twitter: @jonathant
+
+	WP developer: Fabian Altahona
+	Twitter: @fabolivar23
+
+	Web designer: Cesar Insignares
+	Twitter: @
+
+/* THANKS */
+
+
+/* SITE */
+	Last update:2019/11/26
+	Language: English
+	Doctype:HTML5
+	IDE: Visual Studio Code, WordPress, Sketch

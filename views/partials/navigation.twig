@@ -1,0 +1,26 @@
+<ul class="navigation__list flush" role="menubar">
+  {% for item in active_menu %}<li class="navigation__item js-menu-item {{ item.classes[0] ? item.classes[0] : '' }}{% if 'current-page-ancestor' in item.classes or 'current-menu-item' in item.classes %} active{% endif %}" role="presentation">
+    {% set title_attribute = item.attr_title ? ' title="' ~ item.attr_title ~ '" ' : '' %}
+    {% set rel = item.target == '_blank' ? ' rel="noopener noreferrer" ' : '' %}
+    {% set target = item.target == '_blank' ? ' target="_blank"' : '' %}
+    <a class="navigation__link" role="menuitem" href="{{item.link}}"{{title_attribute}}{{rel}}{{target}}>{{item.title}}</a>
+    {% include 'partials/navigation-children.twig' with {item: item} %}
+  </li>
+  {% endfor %}
+  {% if extra_items %}
+  {% for item in extra_items %}
+    <li class="navigation__item js-menu-item{{ item.custom_css_class ? ' ' ~ item.custom_css_class : '' }}" role="presentation">
+      {% set cta_link = item.button_link and item.button_type == 'internal' ?
+        item.button_link  : ( item.button_link_external and item.button_type == 'external' ?
+        item.button_link_external : '' ) %}
+      {% if cta_link %}
+      {% set title_attribute = item.title_attribute ? ' title="' ~ item.title_attribute ~ '"' : '' %}
+        {% set rel = item.button_target == '_blank' ? ' rel="noopener noreferrer"' : '' %}
+        <a href="{{cta_link}}" class="navigation__link" role="menuitem" target="{{item.button_target}}"{{title_attribute}}{{rel}}>
+          {{item.button_label}}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  {% endif %}
+</ul>
